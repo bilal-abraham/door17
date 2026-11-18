@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Door 17</title>
+  <meta name="description" content="Door No. 17">
+  <meta name="color-scheme" content="light dark">
+  <style>
+    :root {
+      --bg: #ffffff;
+      --fg: #111111;
+      --muted: #8a8a8a;
+      --line: #d9d9d9;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0b0b0b;
+        --fg: #f2f2f2;
+        --muted: #777777;
+        --line: #2a2a2a;
+      }
+    }
+    * { box-sizing: border-box; margin: 0; }
+    html, body { height: 100%; }
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+      display: grid;
+      place-items: center;
+      padding: 16px;
+    }
+    main { text-align: center; }
+    .mark {
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .rule {
+      width: 48px;
+      height: 1px;
+      background: var(--line);
+      margin: 20px auto;
+      border: 0;
+    }
+    h1 {
+      font-family: ui-sans-serif, -apple-system, "Helvetica Neue", Arial, sans-serif;
+      font-weight: 400;
+      font-size: clamp(32px, 7vw, 56px);
+      letter-spacing: -0.01em;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <p class="mark">No. 17</p>
+    <hr class="rule">
+    <h1>Door No. 17</h1>
+  </main>
+</body>
+</html>
