@@ -60,6 +60,14 @@
     }
     footer a { color: #9a9a9a; text-decoration: none; }
     footer a:hover, footer a:focus-visible { color: #efefef; text-decoration: underline; text-underline-offset: 3px; }
+    .email { color: #9a9a9a; display: inline-flex; align-items: center; gap: 2px; margin-right: -8px; }
+    footer { align-items: center; }
+    #copy { width: 30px; height: 30px; flex: none; display: grid; place-items: center; border: 0; border-radius: 6px; background: transparent; color: #7a7a7a; cursor: pointer; }
+    #copy:hover, #copy:focus-visible { color: #efefef; background: rgba(255,255,255,.08); }
+    #copy svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
+    #copy .i-done { display: none; }
+    #copy.done .i-copy { display: none; }
+    #copy.done .i-done { display: inline; }
 
     /* motion */
     .wipe { animation: wipe 1s cubic-bezier(.65, 0, .35, 1) .2s both; }
@@ -112,9 +120,11 @@
   </main>
 
   <footer>
-    <a href="https://limn.web.app/">limn</a>
-    <a href="https://bilal-abraham.github.io/liveog/">liveog</a>
-    <a href="mailto:babraham@hmc.edu">babraham@hmc.edu</a>
+    <a href="https://limn.web.app/" target="_blank" rel="noopener noreferrer">limn</a>
+    <a href="https://bilal-abraham.github.io/liveog/" target="_blank" rel="noopener noreferrer">liveog</a>
+    <span class="email"><span id="email">babraham@hmc.edu</span><button type="button" id="copy" aria-label="Copy email address" title="Copy">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><g class="i-copy"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></g><path class="i-done" d="M20 6 9 17l-5-5"/></svg>
+    </button></span>
   </footer>
 
   <script>
@@ -186,6 +196,21 @@
       requestAnimationFrame(frame);
     }
     if (reduce) place(); else requestAnimationFrame(frame);
+
+    // Copy the email address.
+    const copy = document.getElementById("copy"), email = document.getElementById("email");
+    copy.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(email.textContent);
+      } catch {
+        const r = document.createRange(); r.selectNodeContents(email);
+        const sel = getSelection(); sel.removeAllRanges(); sel.addRange(r);
+        document.execCommand("copy");
+      }
+      copy.classList.add("done");
+      copy.setAttribute("aria-label", "Copied");
+      setTimeout(() => { copy.classList.remove("done"); copy.setAttribute("aria-label", "Copy email address"); }, 1600);
+    });
   </script>
 </body>
 </html>
